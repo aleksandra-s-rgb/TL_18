@@ -7,7 +7,7 @@ import { OrderPage } from '../../pom/pages/OrderPage'
 let loginPage: LoginPage
 let orderCreationPage: OrderPage
 
-test.describe('All tests', async () => {
+test.describe('All tests TL-17.3 - TL-17.8', async () => {
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page)
     await loginPage.open()

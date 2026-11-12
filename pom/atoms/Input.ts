@@ -1,31 +1,22 @@
 import { expect, Locator, Page } from '@playwright/test'
+import { BaseAtom } from './BaseAtom'
 
-export class Input {
-  page: Page
-  InputLoc: Locator
+export class Input extends BaseAtom {
 
-  constructor(page: Page, dataTestId: string) {
-    this.page = page
-    this.InputLoc = page.getByTestId(dataTestId)
+  constructor(container: Page | Locator, dataTestId: string) {
+    super(container, dataTestId)
   }
 
-
-  async checkVisible(visible = true): Promise<void> {
-    await expect(this.InputLoc).toBeVisible({ visible: visible })
+  async fill(text: string | number): Promise<void> {
+    await this.atomLoc.fill(String(text))
   }
-  async fill(text: string): Promise<void> {
-    await this.InputLoc.fill(text);
-  }
-  async clear():Promise<void> {
-    await this.InputLoc.clear()
+  async clear(): Promise<void> {
+    await this.atomLoc.clear()
   }
 
   async clearAndFill(text: string): Promise<void> {
-    await this.clear();
-    await this.fill(text);
+    await this.clear()
+    await this.fill(text)
   }
 
-  async checkAttached(attached = true):Promise<void> {
-    await expect(this.InputLoc).toBeAttached({attached})
-  }
 }
