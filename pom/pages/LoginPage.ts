@@ -2,8 +2,9 @@ import { expect, Locator, Page } from '@playwright/test'
 import { SERVICE_URL } from '../../config/env-data'
 import { Button } from '../atoms/Button'
 import { Error } from '../atoms/Error'
+import { BasePage } from './BasePage'
 
-export class LoginPage {
+export class LoginPage extends BasePage{
   readonly page: Page
   readonly url: string = SERVICE_URL
   readonly signInButton: Button
@@ -13,6 +14,7 @@ export class LoginPage {
   // add more locators here
 
   constructor(page: Page) {
+    super(page)
     this.page = page
     this.signInButton = new Button(page, 'signIn-button')
     this.usernameField = page.getByTestId('username-input')
