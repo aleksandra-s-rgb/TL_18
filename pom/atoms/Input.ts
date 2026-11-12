@@ -7,8 +7,8 @@ export class Input extends BaseAtom {
     super(container, dataTestId)
   }
 
-  async fill(text: string): Promise<void> {
-    await this.atomLoc.fill(text)
+  async fill(text: string | number): Promise<void> {
+    await this.atomLoc.fill(String(text))
   }
   async clear(): Promise<void> {
     await this.atomLoc.clear()
